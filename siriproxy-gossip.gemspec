@@ -5,10 +5,10 @@ Gem::Specification.new do |s|
   s.name        = "siriproxy-gossip"
   s.version     = "0.0.1" 
   s.authors     = ["envoked"]
-  s.email       = [""]
+  s.email       = ["adrian_wisernig@intuit.com"]
   s.homepage    = ""
   s.summary     = %q{Girls just want to gossip}
-  s.description = %q{This is a "hello world" style plugin. It simply intercepts the phrase "text siri proxy" and responds with a message about the proxy being up and running. This is good base code for other plugins. }
+  s.description = %q{This plugin allows users}
 
   s.rubyforge_project = "siriproxy-gossip"
 
