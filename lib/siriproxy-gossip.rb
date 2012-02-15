@@ -1,3 +1,4 @@
+require 'net/http'
 require 'cora'
 require 'siri_objects'
 require 'pp'
@@ -34,8 +35,13 @@ class SiriProxy::Plugin::Gossip < SiriProxy::Plugin
   end
   
   listen_for /proxy ([^ ]+) (.*)/i do |command,param|
-    say "The command is #{command}. The parameter is #{param}"
-    request_completed
+    uri = URI('http://siriserviceshell.appspot.com/sirishell')
+    Net::HTTP.start(uri.host, uri.port) do |http|
+      request = Net::HTTP::Get.new uri.request_uri
+      response = http.request request # Net::HTTPResponse object
+      say response.body
+      request_completed
+    end
   end
   
   #Demonstrate that you can have Siri say one thing and write another"!
