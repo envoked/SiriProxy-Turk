@@ -33,7 +33,7 @@ class SiriProxy::Plugin::Gossip < SiriProxy::Plugin
     request_completed #always complete your request! Otherwise the phone will "spin" at the user!
   end
   
-  listen_for /Please how much (...) do I have /i do
+  listen_for /Please how much (...) do I have /i do |item|
     say "You have this much #{item}"
     request_completed
   end
