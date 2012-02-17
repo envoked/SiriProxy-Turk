@@ -34,6 +34,11 @@ class SiriProxy::Plugin::Gossip < SiriProxy::Plugin
     request_completed #always complete your request! Otherwise the phone will "spin" at the user!
   end
   
+  listen_for /how much ([^ ]*) do I have/i do |command|
+    say "You have no #{command}"
+    request_completed
+  end
+  
   listen_for /proxy ([^ ]+) (.*)/i do |command,param|
     uri = URI('http://siriserviceshell.appspot.com/sirishell')
     Net::HTTP.start(uri.host, uri.port) do |http|
