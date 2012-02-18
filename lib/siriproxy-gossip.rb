@@ -40,7 +40,7 @@ class SiriProxy::Plugin::Gossip < SiriProxy::Plugin
   end
   
   listen_for /proxy ([^ ]+) (.*)/i do |command,param|
-    uri = URI('http://siriserviceshell.appspot.com/sirishell')
+    uri = URI("http://localhost:8080/registers/#{command}/#{param}.json")
     Net::HTTP.start(uri.host, uri.port) do |http|
       request = Net::HTTP::Get.new uri.request_uri
       response = http.request request # Net::HTTPResponse object
