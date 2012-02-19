@@ -42,16 +42,17 @@ class SiriProxy::Plugin::Gossip < SiriProxy::Plugin
   
   listen_for /proxy ([^ ]+) (.*)/i do |command,param|
     uri = URI("http://localhost:8080/registers/#{command}/#{URI.escape(param)}.json")
-    Net::HTTP.start(uri.host, uri.port) do |http|
-      begin
+    begin
+      Net::HTTP.start(uri.host, uri.port) do |http|
         request = Net::HTTP::Get.new uri.request_url
         response = http.request request # Net::HTTPResponse object
         say response.body
-      rescue
-        say "Sorry, something went wrong"
       end
-        request_completed
+    
+    rescue
+      say "Sorry something went wrong."
     end
+    request_completed
   end
   
   #Demonstrate that you can have Siri say one thing and write another"!
