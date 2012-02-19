@@ -1,4 +1,5 @@
 require 'net/http'
+require 'uri'
 require 'cora'
 require 'siri_objects'
 require 'pp'
@@ -40,7 +41,7 @@ class SiriProxy::Plugin::Gossip < SiriProxy::Plugin
   end
   
   listen_for /proxy ([^ ]+) (.*)/i do |command,param|
-    uri = URI("http://localhost:8080/registers/#{command}/#{param}.json")
+    uri = URI("http://localhost:8080/registers/#{command}/URI.escape(#{param}).json")
     Net::HTTP.start(uri.host, uri.port) do |http|
       request = Net::HTTP::Get.new uri.request_uri
       response = http.request request # Net::HTTPResponse object
