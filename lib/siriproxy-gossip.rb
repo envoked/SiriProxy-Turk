@@ -43,10 +43,14 @@ class SiriProxy::Plugin::Gossip < SiriProxy::Plugin
   listen_for /proxy ([^ ]+) (.*)/i do |command,param|
     uri = URI("http://localhost:8080/registers/#{command}/#{URI.escape(param)}.json")
     Net::HTTP.start(uri.host, uri.port) do |http|
-      request = Net::HTTP::Get.new uri.request_uri
-      response = http.request request # Net::HTTPResponse object
-      say response.body
-      request_completed
+      begin
+        request = Net::HTTP::Get.new uri.request_url
+        response = http.request request # Net::HTTPResponse object
+        say response.body
+      rescue
+        say "Sorry, something went wrong"
+      end
+        request_completed
     end
   end
   
