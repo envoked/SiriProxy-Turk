@@ -41,7 +41,11 @@ class SiriProxy::Plugin::Gossip < SiriProxy::Plugin
   end
   
   listen_for /proxy ([^ ]+) (.*)/i do |command,param|
-    say  Net::HTTP.get(URI("http://localhost:8080/delegate/#{command}/#{URI.escape(param)}")) rescue "Something went Wrong"
+    if param.nil?
+      say "I think I need more data."
+    else
+      say  Net::HTTP.get(URI("http://localhost:8080/delegate/#{command}/#{URI.escape(param)}")) rescue "Something went Wrong"
+    end
     request_completed
   end
   
