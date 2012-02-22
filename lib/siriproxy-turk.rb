@@ -37,7 +37,6 @@ class SiriProxy::Plugin::Turk < SiriProxy::Plugin
     request_completed
   end
   
-  listen_for /
   
   listen_for /Do you have tea/i,within_state: :adrian do
     say "Only English breakfast."
