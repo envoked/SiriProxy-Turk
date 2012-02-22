@@ -29,9 +29,9 @@ class SiriProxy::Plugin::Turk < SiriProxy::Plugin
     #    modifications made to it)
   end 
 
-  listen_for /hello mate/i do
+  listen_for /Can I pay my plumber on Friday/i do
     set_state :adrian
-    say "Why hello there sir."
+    say "Yes.You have a balance of $300."
     request_completed
   end
   
