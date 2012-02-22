@@ -31,9 +31,19 @@ class SiriProxy::Plugin::Turk < SiriProxy::Plugin
 
   listen_for /Can I pay my plumber on Friday/i do
     set_state :adrian
-    say "You owe your plumber $150."
-    say "Today you have a balance of $400 plus pending receivables of $100 and pending payments of $200."
+    say "You owe your plumber $200.", spoken: "Yes you will have available funds by Friday." 
+    say "Today you have a balance of $400."
+    say "Your scheduled recievables are $100"
+    say "Your pending payments are $200"
     say "By Friday, you'll have a balance of $300."
+    response = ask "Would you like to schedule the payment"
+    
+    if(response =~ /yes/i)
+        say "I've scheduled the payment of $200. You should have $100 left in your account on Friday." 
+      else
+        say "Ok I won't schedule the payment."
+      end
+    
     request_completed
   end
   
