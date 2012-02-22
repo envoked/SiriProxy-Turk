@@ -31,9 +31,13 @@ class SiriProxy::Plugin::Turk < SiriProxy::Plugin
 
   listen_for /Can I pay my plumber on Friday/i do
     set_state :adrian
-    say "Yes.You have a balance of $300."
+    say "You owe your plumber $150."
+    say "Today you have a balance of $400 plus pending receivables of $100 and pending payments of $200."
+    say "By Friday, you'll have a balance of $300."
     request_completed
   end
+  
+  listen_for /
   
   listen_for /Do you have tea/i,within_state: :adrian do
     say "Only English breakfast."
