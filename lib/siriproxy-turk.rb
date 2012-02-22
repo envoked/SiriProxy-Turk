@@ -29,6 +29,9 @@ class SiriProxy::Plugin::Turk < SiriProxy::Plugin
     #    modifications made to it)
   end 
 
+  listen_for /hello mate/i do
+    say "Why hello there sir."
+  end
   # listen_for /turk (.*)/i do |question|
   # 
   #   File.open("siri-question.txt", 'w+') {|f| f.write(question) }# write the question to a file
