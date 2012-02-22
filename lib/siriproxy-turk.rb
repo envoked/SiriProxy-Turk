@@ -30,7 +30,14 @@ class SiriProxy::Plugin::Turk < SiriProxy::Plugin
   end 
 
   listen_for /hello mate/i do
+    set_state :adrian
     say "Why hello there sir."
+    request_completed
+  end
+  
+  listen_for /Do you have tea/i,within_state: :adrian do
+    say "Only English breakfast."
+    request_completed
   end
   # listen_for /turk (.*)/i do |question|
   # 
