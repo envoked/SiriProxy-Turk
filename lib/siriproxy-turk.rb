@@ -51,7 +51,12 @@ class SiriProxy::Plugin::Turk < SiriProxy::Plugin
     response = ask "Do you want to reschedule the payment to your plumber to avoid any fees?"
     
     if(response =~ /yes/i)
-        say "Ok. I've rescheduled the payment for Tuesday when you will have available funds." 
+        say "Ok. I've rescheduled the payment for Tuesday when you will have available funds."
+        response = ask "Would you like me to send an email reminder to the deadbeat who didn't pay"
+        
+        if(response =~/yes/i)
+          say "I've emailed the deadbeat."
+        end
       else
         say "Ok I won't reschedule the payment."
       end
