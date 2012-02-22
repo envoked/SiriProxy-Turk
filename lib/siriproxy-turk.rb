@@ -30,7 +30,6 @@ class SiriProxy::Plugin::Turk < SiriProxy::Plugin
   end 
 
   listen_for /Can I pay my plumber on Friday/i do
-    set_state :adrian
     say "You owe your plumber $200.", spoken: "Yes you will have available funds by Friday." 
     say "Today you have a balance of $400."
     say "Your scheduled recievables are $100"
