@@ -46,7 +46,21 @@ class SiriProxy::Plugin::Turk < SiriProxy::Plugin
     
     request_completed
   end
-  
+
+  listen_for /Have all my pending payments cleared/i do
+    say 'No. One transaction in the amount of $200 did not come through.'
+    response = ask "Do you want to reschedule the payment to your plumber to avoid any fees?"
+    
+    if(response =~ /yes/i)
+        say "Ok. I've rescheduled the payment for Tuesday when you will have available funds." 
+      else
+        say "Ok I won't reschedule the payment."
+      end
+    
+    request_completed
+    
+    
+  end
   
   listen_for /Do you have tea/i,within_state: :adrian do
     say "Only English breakfast."
